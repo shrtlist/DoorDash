@@ -26,20 +26,20 @@ struct ContentView: View {
             }
             .navigationTitle("Posts")
             .refreshable {
-                await doIt()
+                await fetchPosts()
             }
             .task {
-                await doIt()
+                await fetchPosts()
             }
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                 Task {
-                    await doIt()
+                    await fetchPosts()
                 }
             }
         }
     }
 
-    private func doIt() async {
+    private func fetchPosts() async {
         do {
             try await networkManager.fetchPosts()
         } catch DDError.invalidData {
