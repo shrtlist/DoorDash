@@ -16,12 +16,6 @@ class ViewModel: ObservableObject {
     func fetchPosts() async {
         do {
             posts = try await networkManager.fetchPosts()
-        } catch DDError.invalidData {
-            print("Invalid data")
-        } catch DDError.invalidResponse {
-            print("Invalid response")
-        } catch DDError.invalidURL {
-            print("Invalid URL")
         } catch {
             print(error.localizedDescription)
         }
