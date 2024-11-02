@@ -6,18 +6,17 @@
 //
 
 import Foundation
-import Combine
 
 class NetworkManager {
     func fetchPosts() async throws -> [Post] {
         guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else {
-            throw DDError.invalidURL
+            throw URLError(.badURL)
         }
 
         let (data, response) = try await URLSession.shared.data(from: url)
 
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-            throw DDError.invalidResponse
+            throw URLError(.badServerResponse)
         }
 
         do {
@@ -26,13 +25,7 @@ class NetworkManager {
 
             return try decoder.decode([Post].self, from: data)
         } catch {
-            throw DDError.invalidData
+            throw URLError(.cannotDecodeContentData)
         }
     }
-}
-
-enum DDError: Error {
-    case invalidURL
-    case invalidResponse
-    case invalidData
 }
