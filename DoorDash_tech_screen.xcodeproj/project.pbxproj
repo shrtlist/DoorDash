@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1CA7C31B2CD5CEAD006A92BD /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA7C31A2CD5CEAB006A92BD /* ViewModel.swift */; };
 		1CD1587B2C2723CE00005F53 /* DoorDash_tech_screenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD1587A2C2723CE00005F53 /* DoorDash_tech_screenApp.swift */; };
 		1CD1587D2C2723CE00005F53 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD1587C2C2723CE00005F53 /* ContentView.swift */; };
 		1CD1587F2C2723D000005F53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CD1587E2C2723D000005F53 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1CA7C31A2CD5CEAB006A92BD /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		1CD158772C2723CE00005F53 /* DoorDash_tech_screen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoorDash_tech_screen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CD1587A2C2723CE00005F53 /* DoorDash_tech_screenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorDash_tech_screenApp.swift; sourceTree = "<group>"; };
 		1CD1587C2C2723CE00005F53 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 		1CD158792C2723CE00005F53 /* DoorDash_tech_screen */ = {
 			isa = PBXGroup;
 			children = (
+				1CA7C31A2CD5CEAB006A92BD /* ViewModel.swift */,
 				1CD1588C2C27829000005F53 /* DetailView.swift */,
 				1CD1588A2C27240F00005F53 /* NetworkManager.swift */,
 				1CD158882C2723ED00005F53 /* Post.swift */,
@@ -150,6 +153,7 @@
 				1CD158892C2723F600005F53 /* Post.swift in Sources */,
 				1CD1587D2C2723CE00005F53 /* ContentView.swift in Sources */,
 				1CD1588D2C27829500005F53 /* DetailView.swift in Sources */,
+				1CA7C31B2CD5CEAD006A92BD /* ViewModel.swift in Sources */,
 				1CD1587B2C2723CE00005F53 /* DoorDash_tech_screenApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

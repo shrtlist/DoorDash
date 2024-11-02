@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var networkManager = NetworkManager()
+    @StateObject var viewModel = ViewModel()
 
     var body: some View {
         NavigationStack {
-            List(networkManager.posts) { post in
+            List(viewModel.posts) { post in
                 NavigationLink(destination: DetailView(post: post)) {
                     VStack(alignment: .leading) {
                         Text(post.title)
@@ -26,30 +26,16 @@ struct ContentView: View {
             }
             .navigationTitle("Posts")
             .refreshable {
-                await fetchPosts()
+                await viewModel.fetchPosts()
             }
             .task {
-                await fetchPosts()
+                await viewModel.fetchPosts()
             }
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                 Task {
-                    await fetchPosts()
+                    await viewModel.fetchPosts()
                 }
             }
-        }
-    }
-
-    private func fetchPosts() async {
-        do {
-            try await networkManager.fetchPosts()
-        } catch DDError.invalidData {
-
-        } catch DDError.invalidResponse {
-
-        } catch DDError.invalidURL {
-
-        } catch {
-
         }
     }
 }
