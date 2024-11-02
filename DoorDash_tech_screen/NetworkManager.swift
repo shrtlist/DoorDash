@@ -8,12 +8,8 @@
 import Foundation
 import Combine
 
-// ObservableObject so must be done in MainActor
-@MainActor
-class NetworkManager: ObservableObject {
-    @Published var posts = [Post]()
-
-    func fetchPosts() async throws {
+class NetworkManager {
+    func fetchPosts() async throws -> [Post] {
         guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else {
             throw DDError.invalidURL
         }
@@ -28,9 +24,7 @@ class NetworkManager: ObservableObject {
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
 
-            let posts = try decoder.decode([Post].self, from: data)
-
-            self.posts = posts
+            return try decoder.decode([Post].self, from: data)
         } catch {
             throw DDError.invalidData
         }
