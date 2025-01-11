@@ -17,8 +17,8 @@ struct DetailView: View {
                 .fontWeight(.bold)
             Text(post.body)
                 .font(.body)
+            Spacer()
         }
         .padding()
-        .navigationTitle("Detail")
     }
 }
