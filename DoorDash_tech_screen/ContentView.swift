@@ -9,20 +9,27 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var viewModel = ViewModel()
+    @State private var navPath: [Post] = []
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navPath) {
             List(viewModel.posts) { post in
-                NavigationLink(destination: DetailView(post: post)) {
-                    VStack(alignment: .leading) {
-                        Text(post.title)
-                            .font(.headline)
-                        Text(post.body)
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
+                Button(
+                    action: {
+                        navPath.append(post)
+                    },
+                    label: {
+                        VStack(alignment: .leading) {
+                            Text(post.title)
+                                .font(.headline)
+                            Text(post.body)
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
+                        .padding(.vertical, 4)
                     }
-                    .padding(.vertical, 4)
-                }
+                )
+                .buttonStyle(.plain)
             }
             .navigationTitle("Posts")
             .refreshable {
@@ -35,6 +42,9 @@ struct ContentView: View {
                 Task {
                     await viewModel.fetchPosts()
                 }
+            }
+            .navigationDestination(for: Post.self) { post in
+                DetailView(post: post)
             }
         }
     }
