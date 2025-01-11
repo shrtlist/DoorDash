@@ -19,14 +19,7 @@ struct ContentView: View {
                         navPath.append(post)
                     },
                     label: {
-                        VStack(alignment: .leading) {
-                            Text(post.title)
-                                .font(.headline)
-                            Text(post.body)
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
-                        }
-                        .padding(.vertical, 4)
+                        PostRowView(post: post)
                     }
                 )
                 .buttonStyle(.plain)
