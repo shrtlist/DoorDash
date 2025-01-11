@@ -8,21 +8,32 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var viewModel = ViewModel()
+    @State private var viewModel = ViewModel()
     @State private var navPath: [Post] = []
 
     var body: some View {
         NavigationStack(path: $navPath) {
-            List(viewModel.posts) { post in
-                Button(
-                    action: {
-                        navPath.append(post)
-                    },
-                    label: {
-                        PostRowView(post: post)
+            Group {
+                if viewModel.isLoading {
+                    ProgressView()
+                        .frame(maxWidth: .infinity, alignment: .center)
+                } else if viewModel.posts.isEmpty {
+                    ScrollView {
+                        ContentUnavailableView.init("No results", systemImage: "text.quote")
                     }
-                )
-                .buttonStyle(.plain)
+                } else {
+                    List(viewModel.posts) { post in
+                        Button(
+                            action: {
+                                navPath.append(post)
+                            },
+                            label: {
+                                PostRowView(post: post)
+                            }
+                        )
+                        .buttonStyle(.plain)
+                    }
+                }
             }
             .navigationTitle("Posts")
             .refreshable {
